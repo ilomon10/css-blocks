@@ -4,7 +4,9 @@ const Hero1Config = {
   type: "registry:block",
   registryDependencies: ["button"],
   categories: ["marketing", "application", "publisher", "commerce"],
-  meta: undefined,
+  meta: {
+    iframeHeight: 650,
+  },
 };
 
 export default Hero1Config;

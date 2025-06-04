@@ -3,6 +3,8 @@ import { getBlockComponent, getBlockItem } from "@/lib/registry";
 import { notFound } from "next/navigation";
 import React from "react";
 
+import "@/styles/mdx.css";
+
 const getCachedRegistryItem = React.cache(async (name: string) => {
   return await getBlockItem(name);
 });

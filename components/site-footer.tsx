@@ -6,6 +6,7 @@ import {
   Scale,
   Webhook,
 } from "lucide-react";
+import Image from "next/image";
 
 import Link from "next/link";
 
@@ -105,7 +106,7 @@ export function Footer() {
       <div className="max-w-screen-xl mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <img
+            <Image
               className="h-11 w-auto -ml-2.5 -mt-2"
               alt="pwc"
               src="/_static/images/brands/pwc.svg"

@@ -4,7 +4,9 @@ const FooterConfig = {
   type: "registry:block",
   registryDependencies: ["button"],
   categories: ["marketing", "application", "publisher", "commerce"],
-  meta: undefined,
+  meta: {
+    iframeHeight: 260,
+  },
 };
 
 export default FooterConfig;

@@ -10,14 +10,18 @@ async function compileBlockRegistry() {
   const blockEntries = Object.entries(blockList)
     .map(([key, block]) => {
       return `"${key}": {
+        "categories": "${block.categories}",
         "section": "${block.section}",
+        "title": "${block.title}",
+        "description": "${block.description}",
         "name": "${block.name}",
-        "component": React.lazy(() => import('@/${block.file.path}')),
+        "component": React.lazy(() => import("@/${block.file.path}")),
         "file": {
           "path": "${block.file.path}",
           "type": "${block.file.type}",
           "target": "${block.file.target}"
-        }
+        },
+        "meta": ${JSON.stringify(block.meta, null, 2)}
       }`;
     })
     .join(",\n");

@@ -6,7 +6,10 @@ import * as React from "react";
 
 export const Index: Record<string, any> = {
   Footer1: {
+    categories: "marketing,application,publisher,commerce",
     section: "footer",
+    title: "Default footer section",
+    description: "This is a default footer section",
     name: "Footer1",
     component: React.lazy(() => import("@/blocks/footer/Footer1.code.tsx")),
     file: {
@@ -14,9 +17,15 @@ export const Index: Record<string, any> = {
       type: "registry:block",
       target: "",
     },
+    meta: {
+      iframeHeight: 260,
+    },
   },
   Footer2: {
+    categories: "marketing,application,publisher,commerce",
     section: "footer",
+    title: "Default footer 2",
+    description: "This is a default footer section",
     name: "Footer2",
     component: React.lazy(() => import("@/blocks/footer/Footer2.code.tsx")),
     file: {
@@ -24,15 +33,40 @@ export const Index: Record<string, any> = {
       type: "registry:block",
       target: "",
     },
+    meta: {
+      iframeHeight: 260,
+    },
   },
   Hero1: {
+    categories: "marketing,application,publisher,commerce",
     section: "hero",
+    title: "Default footer section",
+    description: "This is a default footer section",
     name: "Hero1",
     component: React.lazy(() => import("@/blocks/hero/Hero1.code.tsx")),
     file: {
       path: "blocks/hero/Hero1.code.tsx",
       type: "registry:block",
       target: "",
+    },
+    meta: {
+      iframeHeight: 650,
+    },
+  },
+  Navbar1: {
+    categories: "marketing,application,publisher,commerce",
+    section: "navbar",
+    title: "Default Navbar section",
+    description: "This is a default Navbar section",
+    name: "Navbar1",
+    component: React.lazy(() => import("@/blocks/navbar/Navbar1.code.tsx")),
+    file: {
+      path: "blocks/navbar/Navbar1.code.tsx",
+      type: "registry:block",
+      target: "",
+    },
+    meta: {
+      iframeHeight: 70,
     },
   },
 };

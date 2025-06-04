@@ -316,4 +316,4 @@ const renderMobileMenuItem = (item: MenuItem) => {
   );
 };
 
-export { Navbar1 };
+export default Navbar1;

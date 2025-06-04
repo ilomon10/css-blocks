@@ -4,7 +4,9 @@ const NavbarConfig = {
   type: "registry:block",
   registryDependencies: ["button"],
   categories: ["marketing", "application", "publisher", "commerce"],
-  meta: undefined,
+  meta: {
+    iframeHeight: 70,
+  },
 };
 
 export default NavbarConfig;

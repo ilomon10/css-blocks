@@ -2,41 +2,53 @@ import { Index } from "@/blocks";
 import fs from "fs";
 import path from "path";
 import { pathToFileURL } from "url";
+import _get from "lodash/get";
+import _omit from "lodash/omit";
 
 const memoizedIndex: typeof Index = Object.fromEntries(
   Object.entries(Index).map(([style, items]) => [style, { ...items }])
 );
 
 export type Block = {
-  // categories: string[];
+  categories: string[];
   section: string;
   name: string;
+  title: string;
+  description?: string;
   file: {
     path: string;
     type: string;
     target: string;
   };
+  meta: Record<string, string | number>;
 };
 
-export const getAllFiles = (dirPath: string, arrayOfFiles: string[] = []) => {
+export type BlockCompiled = Block & {
+  component: React.ComponentType;
+};
+
+export async function getAllFiles(
+  dirPath: string,
+  arrayOfFiles: string[] = []
+) {
   const files = fs.readdirSync(dirPath);
 
-  files.forEach((file) => {
+  for (const file of files) {
     const filePath = path.join(dirPath, file);
     if (fs.statSync(filePath).isDirectory()) {
-      arrayOfFiles = getAllFiles(filePath, arrayOfFiles);
+      arrayOfFiles = await getAllFiles(filePath, arrayOfFiles);
     } else {
       arrayOfFiles.push(filePath);
     }
-  });
+  }
 
   return arrayOfFiles;
-};
+}
 
-export const getBlockList = async () => {
+export async function getBlockList() {
   const root_path = "blocks";
 
-  const files = getAllFiles(root_path);
+  const files = await getAllFiles(root_path);
   const blocks: { [key: string]: Block } = {};
 
   for (const file of files) {
@@ -45,11 +57,14 @@ export const getBlockList = async () => {
       const name = path.basename(file, ".config.tsx");
       const codeFilePath = file.replace(".config.tsx", ".code.tsx");
 
-      // const config = await import(pathToFileURL(path.resolve(file)).href);
       // const code = fs.readFileSync(codeFilePath, "utf8");
+      const { default: config } = await import(
+        pathToFileURL(path.resolve(file)).href
+      );
 
       blocks[name] = {
-        // categories: config.default.categories || undefined,
+        ...config,
+        title: _get(config, "name") || name,
         section,
         name,
         file: {
@@ -62,14 +77,15 @@ export const getBlockList = async () => {
   }
 
   return blocks;
-};
+}
 
-export const getBlockComponent = async (name: string) => {
+export async function getBlockComponent(name: string) {
   return memoizedIndex[name]?.component;
-};
+}
 
-export const getBlockItem = async (name: string) => {
-  const item = memoizedIndex[name];
-
-  return item;
-};
+export async function getBlockItem(name: string) {
+  const item = (memoizedIndex[name] as BlockCompiled) || undefined;
+  return {
+    ..._omit(item, ["component"]),
+  };
+}

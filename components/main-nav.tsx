@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { Si1and1 } from "@icons-pack/react-simple-icons";
-import { nanoid } from "nanoid";
 import { blocksConfig } from "@/config/blocks";
 
 export function MainNav() {

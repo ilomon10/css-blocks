@@ -2,12 +2,17 @@ import createMDX from "@next/mdx";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Configure `pageExtensions` to include MDX files
+  env: {
+    google_api_kit: process.env.GOOGLE_API_KIT,
+  },
   pageExtensions: ["ts", "tsx", "mdx"],
   experimental: {
     mdxRs: true,
   },
-  // Optionally, add any other Next.js config below
+  webpack: (config) => {
+    config.module.exprContextCritical = false;
+    return config;
+  }
 };
 
 const withMDX = createMDX({});
