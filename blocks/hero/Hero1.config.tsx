@@ -5,7 +5,7 @@ const Hero1Config = {
   registryDependencies: ["button"],
   categories: ["marketing", "application", "publisher", "commerce"],
   meta: {
-    iframeHeight: 650,
+    iframeHeight: 640,
   },
 };
 

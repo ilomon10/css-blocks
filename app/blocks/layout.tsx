@@ -52,7 +52,9 @@ export default function BlocksLayout({
             </div>
           </div>
         </div>
-        <div className="container-wrapper flex-1">{children}</div>
+        <div className="container-wrapper container mx-auto flex-1">
+          {children}
+        </div>
       </main>
     </>
   );

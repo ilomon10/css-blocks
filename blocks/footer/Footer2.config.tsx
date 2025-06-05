@@ -5,7 +5,7 @@ const FooterConfig = {
   registryDependencies: ["button"],
   categories: ["marketing", "application", "publisher", "commerce"],
   meta: {
-    iframeHeight: 260,
+    iframeHeight: 256,
   },
 };
 

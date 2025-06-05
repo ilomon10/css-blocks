@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-import { BlockCompiled, type Block } from "@/lib/registry";
+import { type Block } from "@/lib/registry";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import { Separator } from "./ui/separator";
 import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
@@ -45,6 +45,11 @@ function BlockViewerProvider({
         id={item.name}
         data-view={view}
         className="group/block-view-wrapper flex flex-col min-w-0 items-stretch gap-4"
+        style={
+          {
+            "--height": item.meta?.iframeHeight ?? "930px",
+          } as React.CSSProperties
+        }
       >
         {children}
       </div>
@@ -77,10 +82,10 @@ function BlockViewerToolbar() {
           <ToggleGroupItem value="100" title="Desktop">
             <MonitorIcon />
           </ToggleGroupItem>
-          <ToggleGroupItem value="60" title="Desktop">
+          <ToggleGroupItem value="60" title="Tablet">
             <TabletIcon />
           </ToggleGroupItem>
-          <ToggleGroupItem value="30" title="Desktop">
+          <ToggleGroupItem value="30" title="Smartphone">
             <SmartphoneIcon />
           </ToggleGroupItem>
         </ToggleGroup>
@@ -93,7 +98,7 @@ function BlockViewerCode() {
   const { item } = useBlockViewer();
   return (
     <div className="group-data-[view=preview]/block-view-wrapper:hidden">
-      Code
+      Code {item.title}
     </div>
   );
 }
@@ -101,7 +106,7 @@ function BlockViewerCode() {
 function BlockViewerPreview() {
   const { item } = useBlockViewer();
   return (
-    <div className="group-data-[view=code]/block-view-wrapper:hidden">
+    <div className="group-data-[view=code]/block-view-wrapper:hidden md:h-[--height]">
       <div className="relative aspect-auto rounded-xl border bg-background overflow-hidden">
         <iframe
           src={`/view/blocks/${item.name}`}

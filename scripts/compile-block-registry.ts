@@ -6,9 +6,10 @@ import prettier from "prettier";
 
 async function compileBlockRegistry() {
   const blockList = await getBlockList();
-
+  console.log("Compiled Components:");
   const blockEntries = Object.entries(blockList)
     .map(([key, block]) => {
+      console.log("+", `${block.section}:`, block.name);
       return `"${key}": {
         "categories": "${block.categories}",
         "section": "${block.section}",

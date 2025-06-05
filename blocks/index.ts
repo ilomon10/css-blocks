@@ -18,7 +18,7 @@ export const Index: Record<string, any> = {
       target: "",
     },
     meta: {
-      iframeHeight: 260,
+      iframeHeight: 256,
     },
   },
   Footer2: {
@@ -34,7 +34,7 @@ export const Index: Record<string, any> = {
       target: "",
     },
     meta: {
-      iframeHeight: 260,
+      iframeHeight: 256,
     },
   },
   Hero1: {
@@ -50,7 +50,7 @@ export const Index: Record<string, any> = {
       target: "",
     },
     meta: {
-      iframeHeight: 650,
+      iframeHeight: 640,
     },
   },
   Navbar1: {
